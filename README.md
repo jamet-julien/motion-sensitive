@@ -1,10 +1,10 @@
-# {PACKAGE}
+# mouse-sensitive
 
-[![CircleCI Status](https://circleci.com/gh/jamet-julien/{PACKAGE}.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/jamet-julien/{PACKAGE})
-![Codecov](https://img.shields.io/codecov/c/github/jamet-julien/{PACKAGE})
-[![npm](https://img.shields.io/npm/dt/{PACKAGE}.svg?style=flat-square)](https://www.npmjs.com/package/{PACKAGE})
-[![npm](https://img.shields.io/npm/v/{PACKAGE}.svg?style=flat-square)](https://www.npmjs.com/package/{PACKAGE})
-[![npm](https://img.shields.io/npm/l/{PACKAGE}.svg?style=flat-square)](https://github.com/jamet-julien/{PACKAGE}/blob/master/LICENSE)
+[![CircleCI Status](https://circleci.com/gh/jamet-julien/mouse-sensitive.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/jamet-julien/mouse-sensitive)
+![Codecov](https://img.shields.io/codecov/c/github/jamet-julien/mouse-sensitive)
+[![npm](https://img.shields.io/npm/dt/mouse-sensitive.svg?style=flat-square)](https://www.npmjs.com/package/mouse-sensitive)
+[![npm](https://img.shields.io/npm/v/mouse-sensitive.svg?style=flat-square)](https://www.npmjs.com/package/mouse-sensitive)
+[![npm](https://img.shields.io/npm/l/mouse-sensitive.svg?style=flat-square)](https://github.com/jamet-julien/mouse-sensitive/blob/master/LICENSE)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 lorem ipsum sit amet
@@ -17,23 +17,23 @@ lorem ipsum sit amet
 
 ## Install <a id="install"></a>
 
-`npm i {PACKAGE}`  
+`npm i mouse-sensitive`  
 or  
-`yarn add {PACKAGE}`
+`yarn add mouse-sensitive`
 
 ---
 
 ### Importing <a id="importing"></a>
 
 ```js
-import package from "{PACKAGE}";
+import package from "mouse-sensitive";
 ```
 
 ---
 
 ### Quick start<a id="quick"></a>
 
-usage {PACKAGE} plugin
+usage mouse-sensitive plugin
 
 ```js
 ```
