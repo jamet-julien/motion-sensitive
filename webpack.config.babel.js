@@ -7,13 +7,20 @@ module.exports = {
     output: {
         path: path.join(__dirname, "dist"),
         libraryTarget: "umd",
-        library: "Timer"
+        filename: "motion-sensitive.min.js"
+    },
+    mode: "production",
+    target: "web",
+    plugins: [],
+    resolve: {
+        extensions: [".js"]
     },
     devtool: "source-map",
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js)$/,
+                exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: "babel-loader",
                     options: {
