@@ -1,5 +1,5 @@
 {
-  "repositoryUrl": "https://github.com/jamet-julien/mouse-sensitive.git",
+  "repositoryUrl": "https://github.com/jamet-julien/motion-sensitive.git",
   "plugins": [
     ["@semantic-release/commit-analyzer", {
       "preset": "angular",
