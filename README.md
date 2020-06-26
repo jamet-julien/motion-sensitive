@@ -7,13 +7,14 @@
 [![npm](https://img.shields.io/npm/l/motion-sensitive.svg?style=flat-square)](https://github.com/jamet-julien/motion-sensitive/blob/master/LICENSE)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-lorem ipsum sit amet
+The plugin MotionSensitive create an instance which allows to follow the movements of an element and to deduce a possible direction.
 
 -   [Install](#install)
 -   [Importing](#importing)
 -   [Quick start](#quick)
 -   [Methods](#methods)
-    -   [.method(`num`)](#method)
+    -   [.isLookedAt(`obj`)](#isLookedAt)
+    -   [.isLookedIn(`obj1`, `obj2`)](#isLookedIn)
 
 ## Install <a id="install"></a>
 
@@ -36,34 +37,57 @@ import MotionSensitive from "motion-sensitive";
 usage motion-sensitive plugin
 
 ```js
-motion = MotionSensitive()
+motion = MotionSensitive();
 
-addEventlisener('mousemove',()=>{
-    motion.trackPosition({x,y});
+addEventlisener("mousemove", (e) => {
+    const mouseX = e.pageX - e.target.offsetLeft;
+    const mouseY = e.pageY - e.target.offsetTop;
+    motion.trackPosition({
+        x: mouseX,
+        y: mouseY
+    });
 });
 
-requestAnimation(()=>>{
-    if(motion.isLookedAt({x:1, y:2})){
-        btn.classList.add('prepare')
+requestAnimation(() => {
+    if (motion.isLookedAt({ x: 1, y: 2 })) {
+        btn.classList.add("prepare");
     }
 
-    if(motion.isLookedIn({x:1, y:3}, {x:1,y:1})){
-        btn.classList.add('prepare')
+    if (motion.isLookedIn({ x: 1, y: 3 }, { x: 1, y: 1 })) {
+        btn.classList.add("prepare");
     }
-})
+});
 ```
 
 ---
 
 ## Methods <a id="methods"></a>
 
-### .method() <a id="method"></a>
+### .isLookedAt(obj) <a id="isLookedAt"></a>
 
-lorem ipsum sit amet
+| argument | type     | Description                |
+| :------- | :------- | :------------------------- |
+| `obj`    | `Object` | target coordinates `{x,y}` |
 
-| argument | type     | Description |
-| :------- | :------- | :---------- |
-| `num`    | `number` | lorem ipsum |
+| return    | Description                                                                                    |
+| :-------- | :--------------------------------------------------------------------------------------------- |
+| `boolean` | `true` when the tracked positions indicate that they are going towards the target else `false` |
 
 ```js
+motion.isLookedAt({ x: 1, y: 2 }); // true or false
+```
+
+### .isLookedIn(obj1, obj2) <a id="isLookedIn"></a>
+
+| argument | type     | Description                |
+| :------- | :------- | :------------------------- |
+| `obj1`   | `Object` | target coordinates `{x,y}` |
+| `obj2`   | `Object` | target coordinates `{x,y}` |
+
+| return    | Description                                                                                              |
+| :-------- | :------------------------------------------------------------------------------------------------------- |
+| `boolean` | `true` when the tracked positions indicate that they are going towards between this targets else `false` |
+
+```js
+motion.isLookedIn({ x: 1, y: 2 }, { x: 1, y: 1 }); // true or false
 ```
