@@ -37,26 +37,32 @@ import MotionSensitive from "motion-sensitive";
 usage motion-sensitive plugin
 
 ```js
-motion = MotionSensitive();
+const motion = MotionSensitive();
+const btn = document.querySelector("#btn1");
 
-addEventlistener("mousemove", (e) => {
-    const mouseX = e.pageX - e.target.offsetLeft;
-    const mouseY = e.pageY - e.target.offsetTop;
-    motion.trackPosition({
+const { x, y, width, height } = btn.getBoundingClientRect();
+const point1 = { x, y: y + height };
+const point2 = { x: x + width, y: y };
+
+document.body.addEventListener("mousemove", (e) => {
+    const mouseX = e.pageX - document.body.offsetLeft;
+    const mouseY = e.pageY - document.body.offsetTop;
+    motion.trackPoint({
         x: mouseX,
         y: mouseY
     });
 });
 
-requestAnimation(() => {
-    if (motion.isLookedAt({ x: 1, y: 2 })) {
-        btn.classList.add("prepare");
+function spy() {
+    if (motion.isLookedIn(point1, point2)) {
+        btn.classList.add("wakeup");
+    } else {
+        btn.classList.remove("wakeup");
     }
+    requestAnimationFrame(spy);
+}
 
-    if (motion.isLookedIn({ x: 1, y: 3 }, { x: 1, y: 1 })) {
-        btn.classList.add("prepare");
-    }
-});
+spy();
 ```
 
 ---

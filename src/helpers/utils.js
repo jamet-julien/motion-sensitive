@@ -4,7 +4,7 @@ export const triggerError = (msg) => {
 
 export const makePushStackLimited = (maxLength) => (arr, value) => [
     value,
-    ...arr.slice(-(maxLength - 1))
+    ...arr.slice(0, maxLength - 1)
 ];
 
 export const mandatoryCoord = ({

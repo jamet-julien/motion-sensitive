@@ -82,6 +82,19 @@ describe("isLookedIn evaluate", () => {
             ).toBeTruthy();
         }
     });
+
+    it("isLookedIn needed 2 Objects with property X and Y", () => {
+        try {
+            instance.isLookedIn({ x: 2, y: 2.5 });
+        } catch (error) {
+            expect(
+                error.includes(
+                    "isLookedIn() must have 2 params object with property x and y"
+                )
+            ).toBeTruthy();
+        }
+    });
+
     it("isLookedIn return true on right direction", () => {
         expect(
             instance.isLookedIn({ x: 2, y: 2.5 }, { x: 2, y: 1.5 })

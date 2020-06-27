@@ -40,8 +40,8 @@ describe("usage makePushStackLimited with limit", () => {
         expect(newArr.length).toBe(3);
     });
 
-    test("the first value pop", () => {
-        expect(newArr.includes("#1")).toBeFalsy();
+    test("the last value pop", () => {
+        expect(newArr.includes("#3")).toBeFalsy();
     });
 
     test("newArr[0] could be last value input", () => {

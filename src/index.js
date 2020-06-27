@@ -28,6 +28,7 @@ export const MotionSensitive = (opt = { gap: 5 }) => {
             pos1 = triggerError(errorMessage["isLookedIn"]),
             pos2 = triggerError(errorMessage["isLookedIn"])
         ) => {
+            if (!history[0] || !history[1]) return false;
             const vector = history[0].sub(history[1]);
 
             const bornA = Vector(pos1).sub(history[1]);
