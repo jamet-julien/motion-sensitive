@@ -14,7 +14,7 @@ const errorMessage = {
 
 const MAX_LENGTH_HISTORY = 2;
 
-const MouseSensitive = (opt = { gap: 5 }) => {
+const MotionSensitive = (opt = { gap: 5 }) => {
     let history = [];
     const pushStackLimited = makePushStackLimited(MAX_LENGTH_HISTORY);
     return {
@@ -53,4 +53,4 @@ const MouseSensitive = (opt = { gap: 5 }) => {
     };
 };
 
-export default MouseSensitive;
+export default MotionSensitive;

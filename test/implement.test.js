@@ -1,18 +1,18 @@
-import MouseSensitive from "../src/index";
+import MotionSensitive from "../src/index";
 
 describe("Constructor", () => {
     it("First import right", () => {
-        expect(typeof MouseSensitive).toBe("function");
+        expect(typeof MotionSensitive).toBe("function");
     });
 
     it("Launched", () => {
-        const instance = MouseSensitive();
+        const instance = MotionSensitive();
         expect(typeof instance).toBe("object");
     });
 });
 
 describe("trackPoint evaluate", () => {
-    const instance = MouseSensitive();
+    const instance = MotionSensitive();
 
     it("TrackPoint needed Object with property X and Y", () => {
         try {
@@ -40,7 +40,7 @@ describe("trackPoint evaluate", () => {
 });
 
 describe("isLookedAt evaluate", () => {
-    const instance = MouseSensitive();
+    const instance = MotionSensitive();
     instance.trackPoint({ x: 0, y: 0 });
     instance.trackPoint({ x: 1, y: 1 });
 
@@ -67,7 +67,7 @@ describe("isLookedAt evaluate", () => {
 });
 
 describe("isLookedIn evaluate", () => {
-    const instance = MouseSensitive();
+    const instance = MotionSensitive();
     instance.trackPoint({ x: 0, y: 0 });
     instance.trackPoint({ x: 1, y: 1 });
 
