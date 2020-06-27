@@ -8,7 +8,7 @@ module.exports = {
         path: path.join(__dirname, "dist"),
         libraryTarget: "umd",
         library: "MotionSensitive",
-        filename: "motion-sensitive.min.js"
+        filename: "MotionSensitive.min.js"
     },
     mode: "production",
     target: "web",

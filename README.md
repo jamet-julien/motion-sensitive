@@ -39,7 +39,7 @@ usage motion-sensitive plugin
 ```js
 motion = MotionSensitive();
 
-addEventlisener("mousemove", (e) => {
+addEventlistener("mousemove", (e) => {
     const mouseX = e.pageX - e.target.offsetLeft;
     const mouseY = e.pageY - e.target.offsetTop;
     motion.trackPosition({
