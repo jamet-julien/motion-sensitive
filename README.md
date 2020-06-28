@@ -71,6 +71,20 @@ spy();
 
 ## Methods <a id="methods"></a>
 
+### MotionSensitive({gap, sensibility})<a id="MotionSensitive"></a>
+
+| argument      | type     | default | Description                                    |
+| :------------ | :------- | :------ | :--------------------------------------------- |
+| `gat`         | `Number` | `5`     | angle gap between target and current direction |
+| `sensibility` | `Number` | `1`     | average of the `n` last direction              |
+
+```js
+const motion = MotionSensitive({
+    gap: 10,
+    sesibility: 10
+});
+```
+
 ### .isLookedAt(obj) <a id="isLookedAt"></a>
 
 | argument | type     | Description                |
