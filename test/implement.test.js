@@ -66,6 +66,37 @@ describe("isLookedAt evaluate", () => {
     });
 });
 
+describe("Params gap", () => {
+    const instance = MotionSensitive({ gap: 15 });
+    instance.trackPoint({ x: 0, y: 0 });
+    instance.trackPoint({ x: 1, y: 1 });
+
+    it("isLookedAt return true on near the right direction", () => {
+        expect(instance.isLookedAt({ x: 2, y: 3 })).toBeTruthy();
+    });
+});
+
+describe("Params sensibility", () => {
+    it("isLookedAt return true on the right direction when there is enough point", () => {
+        const instance = MotionSensitive({ sensibility: 4 });
+        instance.trackPoint({ x: 0, y: 0 });
+        instance.trackPoint({ x: 1.5, y: 2 });
+        instance.trackPoint({ x: 2.4, y: 2.7 });
+        instance.trackPoint({ x: 1.8, y: 1.7 });
+        instance.trackPoint({ x: 1, y: 1 });
+        expect(instance.isLookedAt({ x: 2, y: 2 })).toBeTruthy();
+    });
+
+    it("isLookedAt return wrong on the right direction when there is not enough point", () => {
+        const instance = MotionSensitive({ sensibility: 4 });
+        instance.trackPoint({ x: 0, y: 0 });
+        instance.trackPoint({ x: 1.5, y: 2 });
+        instance.trackPoint({ x: 1.8, y: 1.7 });
+        instance.trackPoint({ x: 1, y: 1 });
+        expect(instance.isLookedAt({ x: 2, y: 2 })).toBeFalsy();
+    });
+});
+
 describe("isLookedIn evaluate", () => {
     const instance = MotionSensitive();
     instance.trackPoint({ x: 0, y: 0 });

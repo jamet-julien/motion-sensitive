@@ -12,34 +12,42 @@ const errorMessage = {
     isLookedIn: "isLookedIn() must have 2 params object with property x and y"
 };
 
-const MAX_LENGTH_HISTORY = 2;
+const MAX_LENGTH_HISTORY = 1;
+const GAP = 5;
 
-export const MotionSensitive = (opt = { gap: 5 }) => {
+const DEFAULT_CONF = { gap: GAP, sensibility: MAX_LENGTH_HISTORY };
+
+export const MotionSensitive = (params = {}) => {
+    const OPTION = { ...DEFAULT_CONF, ...params };
     let history = [];
-    const pushStackLimited = makePushStackLimited(MAX_LENGTH_HISTORY);
+    const lastIndex = Math.max(MAX_LENGTH_HISTORY, OPTION.sensibility);
+    const pushStackLimited = makePushStackLimited(lastIndex + 1);
+
+    const isValidHistory = () => !!(history[0] && history[lastIndex]);
+    const getCurrentVector = () => history[0].sub(history[lastIndex]);
+    const getAngleTargetVector = (pos) => {
+        const vector = getCurrentVector();
+        const target = Vector(pos).sub(history[lastIndex]);
+        const angle = getAngle(vector, target);
+        return [angle, target];
+    };
+
     return {
         isLookedAt: (position = triggerError(errorMessage["isLookedAt"])) => {
-            const vector = history[0].sub(history[1]);
-            const target = Vector(position).sub(history[1]);
-
-            return getAngle(vector, target) <= opt.gap;
+            if (!isValidHistory()) return false;
+            const [angle] = getAngleTargetVector(position);
+            return angle <= OPTION.gap;
         },
         isLookedIn: (
             pos1 = triggerError(errorMessage["isLookedIn"]),
             pos2 = triggerError(errorMessage["isLookedIn"])
         ) => {
-            if (!history[0] || !history[1]) return false;
-            const vector = history[0].sub(history[1]);
+            if (!isValidHistory()) return false;
 
-            const bornA = Vector(pos1).sub(history[1]);
-            const bornB = Vector(pos2).sub(history[1]);
+            const [angle1, target1] = getAngleTargetVector(pos1);
+            const [angle2, target2] = getAngleTargetVector(pos2);
 
-            const angleVectorBornA = getAngle(vector, bornA);
-            const angleVectorBornB = getAngle(vector, bornB);
-
-            return (
-                angleVectorBornA + angleVectorBornB == getAngle(bornA, bornB)
-            );
+            return angle1 + angle2 == getAngle(target1, target2);
         },
         trackPoint: (position = triggerError(errorMessage["trackPoint"])) => {
             try {
