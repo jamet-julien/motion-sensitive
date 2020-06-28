@@ -80,19 +80,21 @@ describe("Params sensibility", () => {
     it("isLookedAt return true on the right direction when there is enough point", () => {
         const instance = MotionSensitive({ sensibility: 4 });
         instance.trackPoint({ x: 0, y: 0 });
-        instance.trackPoint({ x: 1.5, y: 2 });
-        instance.trackPoint({ x: 2.4, y: 2.7 });
-        instance.trackPoint({ x: 1.8, y: 1.7 });
-        instance.trackPoint({ x: 1, y: 1 });
+        instance.trackPoint({ x: 2, y: 2 });
+        instance.trackPoint({ x: 4, y: 4 });
+        instance.trackPoint({ x: 5, y: 5 });
+        instance.trackPoint({ x: 6, y: 6 });
+
         expect(instance.isLookedAt({ x: 2, y: 2 })).toBeTruthy();
     });
 
     it("isLookedAt return wrong on the right direction when there is not enough point", () => {
         const instance = MotionSensitive({ sensibility: 4 });
-        instance.trackPoint({ x: 0, y: 0 });
-        instance.trackPoint({ x: 1.5, y: 2 });
-        instance.trackPoint({ x: 1.8, y: 1.7 });
-        instance.trackPoint({ x: 1, y: 1 });
+        instance.trackPoint({ x: 2, y: 9 });
+        instance.trackPoint({ x: 4, y: 4 });
+        instance.trackPoint({ x: 5, y: 5 });
+        instance.trackPoint({ x: 6, y: 6 });
+
         expect(instance.isLookedAt({ x: 2, y: 2 })).toBeFalsy();
     });
 });
