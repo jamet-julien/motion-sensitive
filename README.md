@@ -65,6 +65,8 @@ function spy() {
 spy();
 ```
 
+#### click to see [DEMO](https://codepen.io/jamet-julien/pen/gOPxoqY)
+
 ---
 
 ## Methods <a id="methods"></a>

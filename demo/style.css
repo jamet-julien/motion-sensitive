@@ -10,12 +10,12 @@ body {
 }
 
 .popup {
-    width: 400px;
-    height: 300px;
+    width: 90%;
+    height: 50px;
     padding: 10px;
     background: #fff;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-around;
 }
 

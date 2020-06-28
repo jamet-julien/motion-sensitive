@@ -4,10 +4,7 @@ let elementsSensitive;
 
 const motion = MotionSensitive();
 
-const element = [
-    document.querySelector("#btn1"),
-    document.querySelector("#btn2")
-];
+const element = [...document.querySelectorAll("button")];
 
 document.body.addEventListener("mousemove", (e) => {
     const mouseX = e.pageX - document.body.offsetLeft;
@@ -33,21 +30,29 @@ function prepare(arr) {
     return arr.map((el) => {
         const { x, y, width, height } = el.getBoundingClientRect();
 
-        const point1 = { x, y: y + height };
-        const point2 = { x: x + width, y: y };
+        const bottomLeft = { x, y: y + height };
+        const topRight = { x: x + width, y: y };
+
+        const bottomRight = { x: x + width, y: y + height };
+        const topLeft = { x, y };
 
         return {
             timer: null,
             dom: el,
-            point1,
-            point2
+            bottomLeft,
+            topRight,
+            bottomRight,
+            topLeft
         };
     });
 }
 
 function draw() {
     elementsSensitive.map((element) => {
-        if (motion.isLookedIn(element.point2, element.point1)) {
+        if (
+            motion.isLookedIn(element.topRight, element.bottomLeft) ||
+            motion.isLookedIn(element.bottomRight, element.topLeft)
+        ) {
             wakeUp(element);
         }
     });
