@@ -2,7 +2,9 @@ import MotionSensitive from "../src/index";
 
 let elementsSensitive;
 
-const motion = MotionSensitive();
+const motion = MotionSensitive({
+    sensibility: 10
+});
 
 const element = [...document.querySelectorAll("button")];
 
