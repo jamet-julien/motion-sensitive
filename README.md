@@ -13,6 +13,7 @@ The plugin MotionSensitive create an instance which allows to follow the movemen
 -   [Importing](#importing)
 -   [Quick start](#quick)
 -   [Methods](#methods)
+    -   [MotionSensitive(`{gap, sensibility}`)](#MotionSensitive)
     -   [.isLookedAt(`obj`)](#isLookedAt)
     -   [.isLookedIn(`obj1`, `obj2`)](#isLookedIn)
 
