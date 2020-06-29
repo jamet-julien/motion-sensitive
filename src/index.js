@@ -18,14 +18,13 @@ const GAP = 5;
 const DEFAULT_CONF = { gap: GAP, sensibility: MAX_LENGTH_HISTORY };
 
 const getAverageVector = ([first, ...rest]) =>
-    Vector(
-        rest.reduce(
-            (g, { x, y }) => ({
-                x: (g.x + x) / 2,
-                y: (g.y + y) / 2
-            }),
-            first
-        )
+    rest.reduce(
+        (g, { x, y, ...method }) => ({
+            x: (g.x + x) / 2,
+            y: (g.y + y) / 2,
+            ...method
+        }),
+        first
     );
 
 export const MotionSensitive = (params = {}) => {
@@ -48,16 +47,9 @@ export const MotionSensitive = (params = {}) => {
     return {
         isLookedAt: (position = triggerError(errorMessage["isLookedAt"])) => {
             if (isValidHistoryLenght() == false) return false;
-            if (OPTION.sensibility == 4) {
-                let { x, y } = getAverageVector(history);
-                console.log({
-                    sensibility: OPTION.sensibility,
-                    x,
-                    y,
-                    history
-                });
-            }
+
             const [angle] = getAngleTargetVector(position);
+
             return angle <= OPTION.gap;
         },
         isLookedIn: (
