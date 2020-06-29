@@ -8,26 +8,6 @@ const motion = MotionSensitive({
 
 const element = [...document.querySelectorAll("button")];
 
-document.body.addEventListener("mousemove", (e) => {
-    const mouseX = e.pageX - document.body.offsetLeft;
-    const mouseY = e.pageY - document.body.offsetTop;
-    motion.trackPoint({
-        x: mouseX,
-        y: mouseY
-    });
-});
-
-function wakeUp(actived) {
-    if (actived.timer == null) {
-        actived.dom.classList.add("prepare");
-        actived.timer = setTimeout(() => {
-            actived.dom.classList.remove("prepare");
-            clearTimeout(actived.timer);
-            actived.timer = null;
-        }, 1000);
-    }
-}
-
 function prepare(arr) {
     return arr.map((el) => {
         const { x, y, width, height } = el.getBoundingClientRect();
@@ -49,6 +29,17 @@ function prepare(arr) {
     });
 }
 
+function wakeUp(actived) {
+    if (actived.timer == null) {
+        actived.dom.classList.add("prepare");
+        actived.timer = setTimeout(() => {
+            actived.dom.classList.remove("prepare");
+            clearTimeout(actived.timer);
+            actived.timer = null;
+        }, 1000);
+    }
+}
+
 function draw() {
     elementsSensitive.map((element) => {
         if (
@@ -60,6 +51,19 @@ function draw() {
     });
     requestAnimationFrame(draw);
 }
+
+window.addEventListener("resize", () => {
+    elementsSensitive = prepare(element);
+});
+
+document.body.addEventListener("mousemove", (e) => {
+    const mouseX = e.pageX - document.body.offsetLeft;
+    const mouseY = e.pageY - document.body.offsetTop;
+    motion.trackPoint({
+        x: mouseX,
+        y: mouseY
+    });
+});
 
 elementsSensitive = prepare(element);
 draw();
